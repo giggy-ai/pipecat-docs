@@ -46,13 +46,13 @@ see the [Giggy Pipecat setup guide](https://giggy.ai/docs/speech-api?utm_source=
 
 ## Configuration
 
-| Parameter         | Default  | Description                          |
-| ----------------- | -------- | ------------------------------------ |
-| `api_key`         | Required | Giggy API key                        |
-| `voice_id`        | Required | Public or owned Giggy voice UUID     |
-| `aiohttp_session` | Required | Caller-owned HTTP session            |
-| `sample_rate`     | `24000`  | Only supported Streaming output rate |
-| `speed`           | `1.0`    | Speech speed, 0.25â€“4 inclusive     |
+| Parameter         | Default  | Description                           |
+| ----------------- | -------- | ------------------------------------- |
+| `api_key`         | Required | Giggy API key                         |
+| `voice_id`        | Required | Public or owned Giggy voice UUID      |
+| `aiohttp_session` | Required | Caller-owned HTTP session             |
+| `sample_rate`     | `24000`  | Only supported Streaming output rate  |
+| `speed`           | `1.0`    | Speech speed, 0.25Ã¢â‚¬â€œ4 inclusive |
 
 Additional keyword arguments pass to Pipecat's `TTSService`. Runtime updates use
 `GiggyHttpTTSService.Settings(voice="voice-uuid", speed=1.1)` inside a
@@ -101,3 +101,21 @@ single-file runnable WAV example, timeout behavior, maintenance and changelog.
 in Giggy's repository. It shows real speech synthesis, a simulated user
 interruption and resumed speech. The displayed text is synthesis text, not
 microphone transcription.
+
+## Try a browser conversation
+
+For a complete application rather than a provider-only synthesis example, use the
+[Giggy Voice Agent Sandbox](https://github.com/giggy-ai/giggy-voice-agent).
+Clone the repository, run `npm ci` and `npm start` with Node.js 22 or later, and
+open `http://localhost:3001`. Each visitor supplies their own Giggy and DeepSeek
+keys. Speech inference runs in Giggy's cloud; the demo uses a Node.js bridge,
+not a Pipecat pipeline.
+
+A separate [native Pipecat sandbox proposal](https://github.com/giggy-ai/pipecat-giggy/pull/2)
+is available for review. It reuses the same UI with Pipecat services and transport;
+it is not a merged upstream example. Consult its qualification notes before use.
+The existing [SmallWebRTC demo proposal](https://github.com/giggy-ai/pipecat-giggy/pull/1)
+is another pipeline choice, not a second required installation.
+
+Provider requests can consume credits. These links demonstrate application setup;
+they do not establish a latency guarantee or physical microphone qualification.
